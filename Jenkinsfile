@@ -10,5 +10,13 @@ pipeline {
 		            git branch: 'anas', credentialsId: 'jenkins-git', url: 'https://github.com/anassaada1/projetDevOps.git'
                         }
                  }
+		  
+		  stage('Testing Maven ') {
+                 steps {
+                    sh 'mvn -version'
+                        }
                  }
-                 }
+	
+		  
+ }
+}
