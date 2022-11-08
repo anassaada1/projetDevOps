@@ -11,6 +11,12 @@ pipeline {
                         }
                  }
 		  
+		   stage('Cleaning the project') {
+                 steps{
+                    sh "mvn -B -DskipTests clean  "
+                    }
+                }
+		  
 		  stage('Testing Maven ') {
                  steps {
                     sh 'mvn -version'
