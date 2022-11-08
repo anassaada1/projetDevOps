@@ -7,7 +7,7 @@ pipeline {
 	        stage('Checkout GIT ') {
                  steps {
                     echo 'Pulliing ...';
-		           alsId: 'jenkins-git', url: 'https://github.com/anassaada1/projetDevOps.git'
+		            git branch: 'anas', credentialsId: 'jenkins-git', url: 'https://github.com/anassaada1/projetDevOps.git'
                         }
                  }
                  }
