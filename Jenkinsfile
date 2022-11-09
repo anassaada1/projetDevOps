@@ -23,15 +23,14 @@ pipeline {
                         }
                  }
 		  
-	 	stage("SonarQube") {
-    		steps {
-				echo "\033[34m*********Stage SonarQube Started*********\033[0m";
-	        	withSonarQubeEnv('My SonarQube Server') {
-				sh 'mvn clean -DskipTests package sonar:sonar'
-				echo "\033[42m\033[97m*********SonarQube analysis finished with SUCCESS *********\033[0m"
-            	}
-        	}
-		}
+	 	 stage('SonarQube analysis') {
+		        steps {
+		        withSonarQubeEnv(installationName: 'sq1') {
+		        sh 'mvn clean clean -DskipTests package sonar:sonar'
+	                  }
+	                }
+	            }
+
         
 		  
  }
