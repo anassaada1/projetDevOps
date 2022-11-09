@@ -1,5 +1,8 @@
 pipeline {
       agent any
+	 tools {
+		maven 'M2_HOME'
+		        }
 
           stages {
 
@@ -17,11 +20,18 @@ pipeline {
                     }
                 }
 		  
+		  stage('Build') {
+      		    steps {
+        		sh 'mvn -B -DskipTests clean package'
+      		          }
+            	}
+		  
 		  stage('Testing Maven ') {
                  steps {
                     sh 'mvn -version'
                         }
                  }
+		  
 		 stage('SonarQube analysis') {
 		        steps {
 		        withSonarQubeEnv(installationName: 'sq1') {
