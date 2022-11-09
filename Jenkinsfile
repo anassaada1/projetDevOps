@@ -23,14 +23,15 @@ pipeline {
                         }
                  }
 		  
-	 stage('SonarQube analysis') {
-		        steps {
-		        withSonarQubeEnv(installationName: 'sq1') {
-		        sh 'mvn clean clean -DskipTests package sonar:sonar'
-	                  }
-	                }
-	            }
-    	
+	  stage ("sonar-publish"){
+            steps {
+                withSonarQubeEnv("sonarqube") {
+                echo "=========== Performing Sonar Scan ============"
+                sh "${tool("scannerHome")}/bin/sonar-scanner"
+            }
+            }
+        }
+        
 		  
  }
 }
