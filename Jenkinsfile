@@ -25,14 +25,14 @@ pipeline {
                         }
                  }
 		  
-	stage('SonarQube analysis') {
+	
+	        stage('SonarQube analysis') {
 		        steps {
 		        withSonarQubeEnv(installationName: 'sq1') {
-		        sh "mvn sonar:sonar"
+		        sh 'mvn clean clean -DskipTests package sonar:sonar'
 	                  }
 	                }
 	            }
-
         
 		  
  }
