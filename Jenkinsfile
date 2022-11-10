@@ -1,6 +1,8 @@
 pipeline {
       agent any
-	
+	 tools {
+    	maven 'M2_HOME'
+    }
           stages {
 
 
@@ -25,13 +27,13 @@ pipeline {
                         }
                  }
 		  
-		 stage('SonarQube analysis') {
-		        steps {
-		        withSonarQubeEnv(installationName: 'sq1') {
-                      sh 'mvn  clean  sonar:sonar'
-	                  }
-	                }
-	            }
+		stage("SonarQube Analysis") {
+            steps {
+              withSonarQubeEnv('SonarQube') {
+                sh 'mvn clean -DskipTests package sonar:sonar'
+              }
+            }
+          }
         
 		  
  }
